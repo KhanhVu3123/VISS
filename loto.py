@@ -11,9 +11,6 @@ random.seed(2003)
 
 blank_lst = pd.DataFrame(columns=[None]*6)
 
-script_path = Path(__file__).resolve()
-script_dir = script_path.parent
-os.chdir(script_dir)
 
 
 # Generate the first 30 sheets of loto.
@@ -140,9 +137,6 @@ for df in new_df_list:
     nan_row = pd.Series([np.nan] * df.shape[1], index=df.columns)
     df.loc[len(df)] = nan_row
 
-print(new_df_list[0:3])
-print(big_df[0:3])
-
 #Combine the old and new DataFrames
 combined_old_df = pd.concat(big_df, ignore_index=True)
 combined_new_df = pd.concat(new_df_list, ignore_index=True)
@@ -153,11 +147,3 @@ big_df = pd.concat([combined_old_df, combined_new_df], ignore_index=True)
 #Export the combined DataFrame to a CSV file
 output_file_path = 'Loto.csv'  # Replace with your desired file path
 big_df.to_csv(output_file_path, index=False)
-
-
-
-    
-
-
-    
-
